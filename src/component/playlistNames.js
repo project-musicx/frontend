@@ -15,7 +15,7 @@ function PlaylistNames() {
       });
     }
     useEffect(() => {
-      getPlayList();
+     // getPlayList();
     }, []);
   return (
     <div className="wrapper-playlistName">

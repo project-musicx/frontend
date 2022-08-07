@@ -3,6 +3,7 @@ import Track from "./track";
 function PlaylistTable({ tracks }) {
   return (
     <div className="wrapper-playlist">
+    
       <section className="table-playlist">
         <div className="header-table">#</div>
         <div className="header-table">Title</div>

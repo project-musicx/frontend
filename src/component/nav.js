@@ -1,11 +1,13 @@
 import { AiOutlineHome } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
 import {NavLink} from "react-router-dom"
+import LoadAccount from "./LoadAccount"
 import PlaylistNames from "./playlistNames"
 function Nav({ playlist }) {
   return (
     <div className="side-nav">
       <div className="title-of-the-product">MICXY</div>
+      <LoadAccount/>
       <div className="navigation-section">
         <div className="section-nav">
           <div className="box-tabs-nav active">

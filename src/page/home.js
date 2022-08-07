@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import PlaylistBox from "../component/playlistBox";
+import Nav from "../component/nav";
 import ConnectAccount from "../component/connectAccount";
 import axios from "axios";
 function Home() {
-  const [myPlaylist, setPlaylist] = useState([]);
+  const [myPlaylist, setPlaylist] = useState(null);
+
 
   function getPlayList() {
     axios
@@ -16,16 +18,17 @@ function Home() {
       });
   }
   useEffect(() => {
-    getPlayList();
+   // getPlayList();
   }, []);
   return (
     <div className="home">
-      <div className="header-profile"></div>
+    {/*  <div className="header-profile"></div>*/}
       <div className="tabs-section">
         <div className="tabs-wrapper">
           <div className="sporify-tab active">Spotify</div>
           <div className="apple-tab">Apple Music</div>
         </div>
+     {/*   {!myPlaylist?.length?<ConnectAccount type="Spotify"/>:""}*/}
         <div className="playlist-section">
           {myPlaylist?.map((item) => {
             return <PlaylistBox playlist={item} key={item.id} />;
