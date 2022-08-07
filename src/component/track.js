@@ -4,7 +4,7 @@ import { BsMusicNoteBeamed } from "react-icons/bs";
 import { BiLogOut } from "react-icons/bi";
 function Track({ track, index }) {
   const date = new Date(track.duration_ms);
-  console.log(track)
+  console.log(track);
 
   return (
     <div className="tack-table">
