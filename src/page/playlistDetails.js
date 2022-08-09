@@ -22,7 +22,7 @@ function PlaylistDetails() {
   }
   useEffect(() => {
     getPlayListDetail();
-  },[id]);
+  }, [id]);
   return (
     <div className="home">
       {playList ? <PlaylistHeaderDetails playList={playList} /> : ""}

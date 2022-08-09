@@ -6,7 +6,6 @@ import axios from "axios";
 function Home() {
   const [myPlaylist, setPlaylist] = useState(null);
 
-
   function getPlayList() {
     axios
       .get("http://localhost:5000/my-playlist")
@@ -18,17 +17,20 @@ function Home() {
       });
   }
   useEffect(() => {
-   // getPlayList();
+    // getPlayList();
   }, []);
   return (
     <div className="home">
-    {/*  <div className="header-profile"></div>*/}
+      <div className="header-profile">
+        <p>Home</p>
+      </div>
       <div className="tabs-section">
+        <div className="title-of-tabs">Playlist</div>
         <div className="tabs-wrapper">
-          <div className="sporify-tab active">Spotify</div>
-          <div className="apple-tab">Apple Music</div>
+          <button className="sporify-tab active">Spotify</button>
+          <button className="apple-tab">Apple Music</button>
         </div>
-     {/*   {!myPlaylist?.length?<ConnectAccount type="Spotify"/>:""}*/}
+        {/*   {!myPlaylist?.length?<ConnectAccount type="Spotify"/>:""}*/}
         <div className="playlist-section">
           {myPlaylist?.map((item) => {
             return <PlaylistBox playlist={item} key={item.id} />;
