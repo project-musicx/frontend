@@ -20,8 +20,9 @@ function SpotifyButton() {
         .split("=")[1];
       window.location.hash = "";
       window.localStorage.setItem("token", token);
-      saveToken();
+     
     }
+     saveToken();
     function saveToken() {
       let playLoad = {
         accountType: "spotify",

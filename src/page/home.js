@@ -31,11 +31,7 @@ function Home(props) {
           <button className="sporify-tab active">Spotify</button>
           <button className="apple-tab">Apple Music</button>
         </div>
-        {user?.connectedAccounts.length ? (
-          ""
-        ) : (
-          <ConnectAccount type="Spotify" />
-        )}
+        {/* <ConnectAccount type="Spotify" /> */}
         <div className="playlist-section">
           {myPlaylist?.map((item) => {
             return <PlaylistBox playlist={item} key={item.id} />;

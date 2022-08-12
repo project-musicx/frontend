@@ -24,11 +24,11 @@ function PlaylistNames(props) {
     <div className="wrapper-playlistName">
       {myPlaylist?.map((item) => (
         <NavLink
-          to={`/playlist/${item.id}`}
-          key={item.id}
+          to={`/playlist/${item._id}`}
+          key={item._id}
           className="box-name-playlist"
         >
-          {item.name}
+          {item.playlistName}
         </NavLink>
       ))}
     </div>
