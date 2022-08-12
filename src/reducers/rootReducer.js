@@ -1,12 +1,12 @@
 const initState = {
-  user: {},
+  user: null,
   playlists: [],
 };
 const rootReducer = (state = initState, action) => {
   if (action.type === "USER") {
     return {
       ...state,
-      user: action.user,
+      user: action.data,
     };
   }
 
