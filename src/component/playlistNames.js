@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
 import axios from "axios";
-function PlaylistNames() {
+function PlaylistNames(props) {
+  const { user } = props;
   const [myPlaylist, setPlaylist] = useState([]);
   function getPlayList() {
     axios
-      .get("http://localhost:5000/my-playlist")
+      .get("/api/my-playlist")
       .then((result) => {
         setPlaylist(result.data);
       })
@@ -14,8 +16,10 @@ function PlaylistNames() {
       });
   }
   useEffect(() => {
-    // getPlayList();
-  }, []);
+    if (user && props.user.connectedAccounts.length) {
+      getPlayList();
+    }
+  }, [user]);
   return (
     <div className="wrapper-playlistName">
       {myPlaylist?.map((item) => (
@@ -31,4 +35,10 @@ function PlaylistNames() {
   );
 }
 
-export default PlaylistNames;
+const mapstateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapstateToProps, null)(PlaylistNames);

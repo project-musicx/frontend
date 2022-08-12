@@ -7,7 +7,7 @@ function LoginComponent() {
   let navigate = useNavigate();
   function handleCallBackResponse(response) {
     var user_object = jwt_decode(response.credential);
-    loginWithGoogle(user_object)
+    loginWithGoogle(user_object);
   }
 
   useEffect(() => {
@@ -24,9 +24,11 @@ function LoginComponent() {
   }, []);
 
   function loginWithGoogle(user_object) {
-    axios.post("/api/auth/login", user_object ,{ withCredentials: true }).then((result) => {
-      navigate("./home", { replace: true });
-    });
+    axios
+      .post("/api/auth/login", user_object, { withCredentials: true })
+      .then((result) => {
+        navigate("./home", { replace: true });
+      });
   }
 
   return (

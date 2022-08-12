@@ -13,7 +13,7 @@ function ConnectAccount({ type }) {
           <div className="title-that">Link your {type}</div>
         </div>
         <div className="wrapper-for-link">
-          <SpotifyButton/>
+          <SpotifyButton />
         </div>
       </div>
     </div>

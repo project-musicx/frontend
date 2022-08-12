@@ -1,9 +1,10 @@
 import { AiOutlineHome } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
-import {connect} from "react-redux"
+import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import LoadAccount from "./LoadAccount";
 import PlaylistNames from "./playlistNames";
+
 function Nav({ playlist }) {
   return (
     <div className="side-nav">

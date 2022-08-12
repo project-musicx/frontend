@@ -4,8 +4,7 @@ import { connect } from "react-redux";
 import ConnectAccount from "../component/connectAccount";
 import axios from "axios";
 function Home(props) {
-  const {user} = props
-  console.log(props)
+  const { user } = props;
   const [myPlaylist, setPlaylist] = useState(null);
 
   function getPlayList() {
@@ -32,7 +31,11 @@ function Home(props) {
           <button className="sporify-tab active">Spotify</button>
           <button className="apple-tab">Apple Music</button>
         </div>
-   {user?.connectedAccounts.length?"":<ConnectAccount type="Spotify"/>}
+        {user?.connectedAccounts.length ? (
+          ""
+        ) : (
+          <ConnectAccount type="Spotify" />
+        )}
         <div className="playlist-section">
           {myPlaylist?.map((item) => {
             return <PlaylistBox playlist={item} key={item.id} />;
@@ -47,4 +50,4 @@ const mapstateToProps = (state) => {
     user: state.user,
   };
 };
-export default  connect(mapstateToProps, null)(Home);
+export default connect(mapstateToProps, null)(Home);

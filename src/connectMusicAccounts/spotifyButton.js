@@ -20,16 +20,18 @@ function SpotifyButton() {
         .split("=")[1];
       window.location.hash = "";
       window.localStorage.setItem("token", token);
-      saveToken()
+      saveToken();
     }
-    function saveToken(){
+    function saveToken() {
       let playLoad = {
         accountType: "spotify",
         token: token,
       };
-      axios.post("/api/save-my-token",playLoad,{withCredentials:true}).then((result)=>{
-        console.log("redirect")
-    })
+      axios
+        .post("/api/save-my-token", playLoad, { withCredentials: true })
+        .then((result) => {
+          console.log("redirect");
+        });
     }
     setToken(token);
   }, []);
