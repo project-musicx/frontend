@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import PlaylistBox from "../component/playlistBox";
-import Nav from "../component/nav";
+import { connect } from "react-redux";
 import ConnectAccount from "../component/connectAccount";
 import axios from "axios";
-function Home() {
+function Home(props) {
+  const { user } = props;
   const [myPlaylist, setPlaylist] = useState(null);
 
   function getPlayList() {
@@ -25,20 +26,24 @@ function Home() {
         <p>Home</p>
       </div>
       <div className="tabs-section">
-        <div className="title-of-tabs">Playlist</div>
         <div className="tabs-wrapper">
           <button className="sporify-tab active">Spotify</button>
           <button className="apple-tab">Apple Music</button>
         </div>
-        {/*   {!myPlaylist?.length?<ConnectAccount type="Spotify"/>:""}*/}
+        {/* <ConnectAccount type="Spotify" /> */}
         <div className="playlist-section">
-          {myPlaylist?.map((item) => {
-            return <PlaylistBox playlist={item} key={item.id} />;
+          {props.myPlaylist?.map((item) => {
+            return <PlaylistBox playlist={item} key={item._id} />;
           })}
         </div>
       </div>
     </div>
   );
 }
-
-export default Home;
+const mapstateToProps = (state) => {
+  return {
+    user: state.user,
+    myPlaylist: state.myPlaylist,
+  };
+};
+export default connect(mapstateToProps, null)(Home);

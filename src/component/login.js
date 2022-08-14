@@ -4,7 +4,6 @@ import jwt_decode from "jwt-decode";
 function Login() {
   function handleCallBackResponse(response) {
     var user_object = jwt_decode(response.credential);
-    console.log(user_object);
   }
 
   useEffect(() => {

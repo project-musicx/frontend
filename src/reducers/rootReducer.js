@@ -1,19 +1,19 @@
 const initState = {
-  user: {},
-  playlists: [],
+  user: null,
+  myPlaylist: [],
 };
 const rootReducer = (state = initState, action) => {
   if (action.type === "USER") {
     return {
       ...state,
-      user: action.user,
+      user: action.data,
     };
   }
 
-  if (action.type === "UPDATE_MY_PLAYLIST") {
+  if (action.type === "UPDATE_PLAYLIST") {
     return {
       ...state,
-      playlists: action.playlists,
+      myPlaylist: action.data,
     };
   }
 

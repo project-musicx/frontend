@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
 import axios from "axios";
-function PlaylistNames() {
+function PlaylistNames(props) {
+  const { user } = props;
   const [myPlaylist, setPlaylist] = useState([]);
   function getPlayList() {
     axios
-      .get("http://localhost:5000/my-playlist")
+      .get("/api/my-playlist")
       .then((result) => {
+        props.updatePlayList(result.data);
         setPlaylist(result.data);
       })
       .catch((error) => {
@@ -14,21 +17,35 @@ function PlaylistNames() {
       });
   }
   useEffect(() => {
-    // getPlayList();
-  }, []);
+    if (user && props.user.connectedAccounts.length) {
+      getPlayList();
+    }
+  }, [user]);
   return (
     <div className="wrapper-playlistName">
       {myPlaylist?.map((item) => (
         <NavLink
-          to={`/playlist/${item.id}`}
-          key={item.id}
+          to={`/playlist/${item._id}`}
+          key={item._id}
           className="box-name-playlist"
         >
-          {item.name}
+          {item.playlistName}
         </NavLink>
       ))}
     </div>
   );
 }
 
-export default PlaylistNames;
+const mapstateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updatePlayList: (data) => {
+      dispatch({ type: "UPDATE_PLAYLIST", data: data });
+    },
+  };
+};
+export default connect(mapstateToProps, mapDispatchToProps)(PlaylistNames);

@@ -5,11 +5,9 @@ import jwt_decode from "jwt-decode";
 
 function LoginComponent() {
   let navigate = useNavigate();
-  console.log(navigate);
   function handleCallBackResponse(response) {
     var user_object = jwt_decode(response.credential);
-    console.log(response, user_object);
-    navigate("./home", { replace: true });
+    loginWithGoogle(user_object);
   }
 
   useEffect(() => {
@@ -25,10 +23,12 @@ function LoginComponent() {
     });
   }, []);
 
-  function loginWithGoogle() {
-    axios.post("/api/auth/login", { withCredentials: true }).then((result) => {
-      console.log("succes");
-    });
+  function loginWithGoogle(user_object) {
+    axios
+      .post("/api/auth/login", user_object, { withCredentials: true })
+      .then((result) => {
+        navigate("./home", { replace: true });
+      });
   }
 
   return (
