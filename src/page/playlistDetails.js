@@ -11,11 +11,11 @@ function PlaylistDetails() {
     axios
       .get(`/api/my-playlist/${id}`)
       .then((result) => {
-        console.log(result.data)
+        console.log(result.data);
         setPlaylist(result.data);
 
-       // result.data.track.sort((a, b) => b.popularity - a.popularity);
-       // setTrack(result.data.track);
+        // result.data.track.sort((a, b) => b.popularity - a.popularity);
+        // setTrack(result.data.track);
       })
       .catch((error) => {
         console.log(error);

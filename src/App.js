@@ -20,9 +20,9 @@ function App(props) {
       .then((res) => {
         if (res.data.succes) {
           props.loginAthification(res.data.payload);
-        //  navigate("./home", { replace: true });
+          //  navigate("./home", { replace: true });
         } else {
-         navigate("./", { replace: true });
+          navigate("./", { replace: true });
         }
       });
   }

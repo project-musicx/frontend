@@ -80,10 +80,10 @@ button {
 
 .tabs-section {
   padding: 10px;
-width: 100%;
+  width: 100%;
   margin: 0 auto;
 
-  background: #000
+  background: #000;
 }
 
 .playlist-section {
@@ -106,7 +106,7 @@ width: 100%;
   position: absolute;
   top: 0;
   width: 100%;
-  color:white;
+  color: white;
   font-weight: 600;
   height: 100%;
   display: flex;
@@ -224,16 +224,15 @@ width: 100%;
   font-size: 20px;
 }
 .box-tabs-nav.active {
-
 }
 .box-tabs-nav.active a {
   color: #000;
   font-weight: bold;
-  color:white !important;
+  color: white !important;
 }
 .box-tabs-nav.active .box-icon {
   color: #000;
-  color:white !important;
+  color: white !important;
 }
 
 .header-playlist {
@@ -298,7 +297,6 @@ width: 100%;
 }
 .playlist-description {
   margin-top: 30px;
-
 }
 .table-playlist {
   display: grid;
