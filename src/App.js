@@ -4,7 +4,6 @@ import Login from "./component/login";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import Nav from "./component/nav";
 import axios from "axios";
@@ -20,13 +19,9 @@ function App(props) {
       .then((res) => {
         if (res.data.succes) {
           props.loginAthification(res.data.payload);
-          //  navigate("./home", { replace: true });
-        } else {
-          navigate("./", { replace: true });
-        }
+        } 
       });
   }
-
   const [isLogin, setLogin] = useState(true);
   useEffect(() => {
     checkLogin();
