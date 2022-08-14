@@ -9,6 +9,7 @@ function PlaylistNames(props) {
     axios
       .get("/api/my-playlist")
       .then((result) => {
+        props.updatePlayList(result.data);
         setPlaylist(result.data);
       })
       .catch((error) => {
@@ -40,5 +41,11 @@ const mapstateToProps = (state) => {
     user: state.user,
   };
 };
-
-export default connect(mapstateToProps, null)(PlaylistNames);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updatePlayList: (data) => {
+      dispatch({ type: "UPDATE_PLAYLIST", data: data });
+    },
+  };
+};
+export default connect(mapstateToProps, mapDispatchToProps)(PlaylistNames);

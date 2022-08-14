@@ -9,12 +9,13 @@ function PlaylistDetails() {
   const { id } = useParams();
   function getPlayListDetail() {
     axios
-      .get(`http://localhost:5000/my-playlist/${id}`)
+      .get(`/api/my-playlist/${id}`)
       .then((result) => {
-        setPlaylist(result.data.currentPlayList);
+        console.log(result.data)
+        setPlaylist(result.data);
 
-        result.data.track.sort((a, b) => b.popularity - a.popularity);
-        setTrack(result.data.track);
+       // result.data.track.sort((a, b) => b.popularity - a.popularity);
+       // setTrack(result.data.track);
       })
       .catch((error) => {
         console.log(error);

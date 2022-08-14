@@ -26,15 +26,14 @@ function Home(props) {
         <p>Home</p>
       </div>
       <div className="tabs-section">
-        <div className="title-of-tabs">Playlist</div>
         <div className="tabs-wrapper">
           <button className="sporify-tab active">Spotify</button>
           <button className="apple-tab">Apple Music</button>
         </div>
         {/* <ConnectAccount type="Spotify" /> */}
         <div className="playlist-section">
-          {myPlaylist?.map((item) => {
-            return <PlaylistBox playlist={item} key={item.id} />;
+          {props.myPlaylist?.map((item) => {
+            return <PlaylistBox playlist={item} key={item._id} />;
           })}
         </div>
       </div>
@@ -44,6 +43,7 @@ function Home(props) {
 const mapstateToProps = (state) => {
   return {
     user: state.user,
+    myPlaylist: state.myPlaylist,
   };
 };
 export default connect(mapstateToProps, null)(Home);

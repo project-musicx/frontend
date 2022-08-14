@@ -14,7 +14,7 @@ function PlaylistHeaderDetails({ playList }) {
           )}
         </div>
         <div className="playlist-detail">
-          <p className="playlist-detail-title">{playList.name}</p>
+          <p className="playlist-detail-title">{playList.playlistName}</p>
           <p className="playlist-description">{playList.description}</p>
         </div>
         <div className="menu">

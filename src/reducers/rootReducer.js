@@ -1,6 +1,6 @@
 const initState = {
   user: null,
-  playlists: [],
+  myPlaylist: [],
 };
 const rootReducer = (state = initState, action) => {
   if (action.type === "USER") {
@@ -10,10 +10,10 @@ const rootReducer = (state = initState, action) => {
     };
   }
 
-  if (action.type === "UPDATE_MY_PLAYLIST") {
+  if (action.type === "UPDATE_PLAYLIST") {
     return {
       ...state,
-      playlists: action.playlists,
+      myPlaylist: action.data,
     };
   }
 
