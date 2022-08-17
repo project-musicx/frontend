@@ -3,20 +3,20 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 function PlaylistTable(props) {
-  const { id, user } = props;
+  const { id, user, Alltrack, updateMyTrack } = props;
   let spotify = user?.connectedAccounts.find(
     (account) => account.accountType === "spotify"
   );
   let token = spotify?.token;
   const [tracks, setTracks] = useState([]);
+
   function getPlayListTrack() {
-    console.log(token);
     axios
       .get(`/api/my-playlist-track/${id}/${token}`)
       .then((result) => {
+        Alltrack[id] = result.data;
+        updateMyTrack(Alltrack);
         setTracks(result.data);
-        // result.data.track.sort((a, b) => b.popularity - a.popularity);
-        // setTrack(result.data.track);
       })
       .catch((error) => {
         console.log(error);
@@ -24,8 +24,13 @@ function PlaylistTable(props) {
   }
 
   useEffect(() => {
-    if (token && id) {
-      getPlayListTrack();
+    if (id && token) {
+      let currentTrack = Alltrack[id];
+      if (currentTrack) {
+        setTracks(currentTrack);
+      } else {
+        if (token) getPlayListTrack();
+      }
     }
   }, [token, id]);
 
@@ -50,7 +55,14 @@ const mapstateToProps = (state) => {
   return {
     user: state.user,
     myPlaylist: state.myPlaylist,
+    Alltrack: state.track,
   };
 };
-
-export default connect(mapstateToProps, null)(PlaylistTable);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateMyTrack: (data) => {
+      dispatch({ type: "UPDATE_PLAYLIST_TRACK", data: data });
+    },
+  };
+};
+export default connect(mapstateToProps, mapDispatchToProps)(PlaylistTable);

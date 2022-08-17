@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { IoCloseSharp } from "react-icons/io5";
 import SpotifyButton from "../connectMusicAccounts/spotifyButton";
 function ConnectAccount(props) {
   const { type, user } = props;

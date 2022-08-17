@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
+import { MdEdit, MdDelete } from "react-icons/md";
 import { FaUserAlt } from "react-icons/fa";
-import { IoEllipsisHorizontal } from "react-icons/io5";
+import { BsFillPlusCircleFill } from "react-icons/bs";
+import { IoEllipsisHorizontal, IoCopy } from "react-icons/io5";
 class PlayListOptionMenu extends Component {
   container = React.createRef();
   state = {
@@ -65,7 +67,7 @@ class PlayListOptionMenu extends Component {
             <div className="wrapper-flex">
               <div className="button-div">
                 <div className="hold-thatiocom">
-                  <FaUserAlt />
+                  <BsFillPlusCircleFill />
                 </div>
                 <button
                   onClick={() => {
@@ -78,7 +80,7 @@ class PlayListOptionMenu extends Component {
               </div>
               <div className="button-div">
                 <div className="hold-thatiocom">
-                  <FaUserAlt />
+                  <MdDelete />
                 </div>
                 <button
                   onClick={() => {
@@ -91,7 +93,7 @@ class PlayListOptionMenu extends Component {
               </div>
               <div className="button-div">
                 <div className="hold-thatiocom">
-                  <FaUserAlt />
+                  <IoCopy />
                 </div>
                 <button
                   onClick={() => {
@@ -100,6 +102,19 @@ class PlayListOptionMenu extends Component {
                   className="edit-the-program"
                 >
                   Copy Playlist
+                </button>
+              </div>
+              <div className="button-div">
+                <div className="hold-thatiocom">
+                  <MdEdit />
+                </div>
+                <button
+                  onClick={() => {
+                    this.props.handleopen(true);
+                  }}
+                  className="edit-the-program"
+                >
+                  Edit Playlist
                 </button>
               </div>
             </div>

@@ -19,14 +19,15 @@ function App(props) {
       .then((res) => {
         if (res.data.succes) {
           props.loginAthification(res.data.payload);
+          setLogin(true);
         }
       });
   }
-  const [isLogin, setLogin] = useState(true);
+  const [isLogin, setLogin] = useState(false);
   useEffect(() => {
     checkLogin();
   }, []);
-  return (
+  return isLogin ? (
     <div className="App">
       {isLogin ? <Nav /> : ""}
       <div className="wrapper-div">
@@ -37,6 +38,10 @@ function App(props) {
           <Route path="/playlist/:id" element={<PlaylistDetails />} />
         </Routes>
       </div>
+    </div>
+  ) : (
+    <div className="App">
+      <Landing />
     </div>
   );
 }
