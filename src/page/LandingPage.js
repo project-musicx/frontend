@@ -1,18 +1,17 @@
 import Redirect from "../redirect";
 import { connect } from "react-redux";
-import {useEffect} from "react"
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import TopNav from "../component/TopNav";
 function LandingPage(props) {
   const navigate = useNavigate();
   useEffect(() => {
-
     if (props.user) {
-    navigate("./home", { replace: true });
+      navigate("./home", { replace: true });
     } else {
       navigate("./", { replace: true });
     }
-  },[props.user])
+  }, [props.user]);
 
   return (
     <div className="landing-page">

@@ -12,11 +12,10 @@ function SpotifyButton() {
     if (count !== 1) return;
     const code = new URLSearchParams(window.location.search).get("code");
     if (code !== null) saveToken();
-    console.log(code);
     function saveToken() {
       let playLoad = {
         accountType: "spotify",
-        token: code,
+        code: code,
       };
       axios
         .post("/api/save-my-token", playLoad, { withCredentials: true })

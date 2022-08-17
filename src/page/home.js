@@ -5,21 +5,7 @@ import ConnectAccount from "../component/connectAccount";
 import axios from "axios";
 function Home(props) {
   const { user } = props;
-  const [myPlaylist, setPlaylist] = useState(null);
-
-  function getPlayList() {
-    axios
-      .get("http://localhost:5000/my-playlist")
-      .then((result) => {
-        setPlaylist(result.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-  useEffect(() => {
-    // getPlayList();
-  }, []);
+  const [currentTab, setCurrentTab] = useState("spotify");
   return (
     <div className="home">
       <div className="header-profile">
@@ -27,15 +13,38 @@ function Home(props) {
       </div>
       <div className="tabs-section">
         <div className="tabs-wrapper">
-          <button className="sporify-tab active">Spotify</button>
-          <button className="apple-tab">Apple Music</button>
+          <button
+            onClick={() => {
+              setCurrentTab("spotify");
+            }}
+            className={`sporify-tab ${
+              currentTab === "spotify" ? "active" : ""
+            }`}
+          >
+            Spotify
+          </button>
+          <button
+            onClick={() => {
+              setCurrentTab("appleMusic");
+            }}
+            className={`apple-tab ${
+              currentTab === "appleMusic" ? "active" : ""
+            }`}
+          >
+            Apple Music
+          </button>
         </div>
-        {/* <ConnectAccount type="Spotify" /> */}
-        <div className="playlist-section">
-          {props.myPlaylist?.map((item) => {
-            return <PlaylistBox playlist={item} key={item._id} />;
-          })}
-        </div>
+
+        <ConnectAccount user={props.user} type={currentTab} />
+        {currentTab === "spotify" ? (
+          <div className="playlist-section">
+            {props.myPlaylist?.map((item) => {
+              return <PlaylistBox playlist={item} key={item._id} />;
+            })}
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

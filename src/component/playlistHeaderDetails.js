@@ -1,4 +1,5 @@
 import { BsMusicNoteBeamed } from "react-icons/bs";
+import PlayListOptionMenu from "./playListOptionMenu";
 import { IoEllipsisHorizontal } from "react-icons/io5";
 function PlaylistHeaderDetails({ playList }) {
   return (
@@ -13,14 +14,16 @@ function PlaylistHeaderDetails({ playList }) {
             </div>
           )}
         </div>
+
         <div className="playlist-detail">
           <p className="playlist-detail-title">{playList.playlistName}</p>
           <p className="playlist-description">{playList.description}</p>
         </div>
-        <div className="menu">
-          <div className="close-that">
-            <IoEllipsisHorizontal />
-          </div>
+        <div className="kfket">
+          <PlayListOptionMenu
+          // handleGroupOpen={this.handleGroupOpen}
+          // handleopen={this.handleopen}
+          />
         </div>
       </div>
       <div className="image-backgroup">

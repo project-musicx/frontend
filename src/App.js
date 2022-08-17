@@ -19,7 +19,7 @@ function App(props) {
       .then((res) => {
         if (res.data.succes) {
           props.loginAthification(res.data.payload);
-        } 
+        }
       });
   }
   const [isLogin, setLogin] = useState(true);

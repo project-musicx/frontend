@@ -11,6 +11,8 @@ function PlaylistNames(props) {
       .then((result) => {
         props.updatePlayList(result.data);
         setPlaylist(result.data);
+        // result.data.track.sort((a, b) => b.popularity - a.popularity);
+        // setTrack(result.data.track);
       })
       .catch((error) => {
         console.log(error);
