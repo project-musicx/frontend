@@ -27,7 +27,7 @@ function LoginComponent() {
     axios
       .post("/api/auth/login", user_object, { withCredentials: true })
       .then((result) => {
-        navigate("./home", { replace: true });
+        window.location.href = "./home";
       });
   }
 
