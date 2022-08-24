@@ -1,10 +1,16 @@
 .App {
-  background-color: #000000;
+  background-color: #0f141e;
   height: 100vh;
   display: flex;
 }
 ::-webkit-scrollbar {
   display: none;
+}
+.landing-page {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 .login-box {
   width: 100%;
@@ -118,7 +124,7 @@ button {
   align-items: center;
   z-index: 10000;
   box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
-  background-color: #000;
+  background-color: #212121;
   clip-path: circle(0px at 100% 0);
   transition: 0.3s ease;
   z-index: 10000000;
@@ -138,7 +144,7 @@ button {
   position: absolute;
 }
 .login-button {
-  width: 200px;
+  width: 100px;
   height: 40px;
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.5);
@@ -186,7 +192,6 @@ button {
 
 .header-profile {
   height: 60px;
-  background-color: #000;
   color: white;
   display: flex;
   align-items: center;
@@ -203,13 +208,32 @@ button {
   width: 100%;
   margin: 0 auto;
   color: white;
-  background: #000;
 }
-
+.component-wrapper {
+  border: 1px solid rgb(255, 255, 255, 0.5);
+  border-radius: 5px;
+  width: 100%;
+  position: relative;
+  padding: 10px;
+  margin: 10px;
+}
+.title-of-wrapper {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+}
+.wrapper-playlist {
+  position: relative;
+  width: 100%;
+}
 .playlist-section {
-  display: grid;
-  gap: 10px;
-  grid-template-columns: repeat(4, minmax(50px, 300px));
+  position: relative;
+  width: 100%;
+  display: flex;
+  overflow: scroll;
 }
 .playlist-box::before {
   content: "";
@@ -217,10 +241,22 @@ button {
   display: block;
 }
 .playlist-box {
+  min-width: 250px;
+  width: 250px;
+  margin: 5px;
   position: relative;
   border-radius: 5px;
+
   text-decoration: none;
   background-color: #212121;
+}
+.wrapper-hover-edit {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  height: 100vh;
 }
 .playlist-name {
   position: absolute;
@@ -232,7 +268,6 @@ button {
   display: flex;
   z-index: 1;
   backdrop-filter: blur(5px);
-
   background-color: rgba(0, 0, 0, 0.4);
   align-items: end;
 }
@@ -268,17 +303,17 @@ button {
   font-size: 60px;
 }
 .side-nav {
-  width: 350px;
+  min-width: 250px;
+  max-width: 250px;
   padding: 10px;
   color: white;
-  background-color: #6f56e5;
-  background-color: #0f151d;
+  background-color: #0f141e;
 }
 .title-of-the-product {
   height: 50px;
   display: flex;
   align-items: center;
-  padding-left: 10px;
+
   text-transform: uppercase;
   font-weight: bold;
   font-size: 20px;
@@ -292,6 +327,10 @@ button {
 }
 .section-nav {
   width: 100%;
+  margin-top: 30px;
+}
+.log-out .box-tabs-nav:hover {
+  color: white;
 }
 .log-out {
   width: 100%;
@@ -346,6 +385,7 @@ button {
   font-size: 20px;
 }
 .box-tabs-nav.active {
+  background-color: rgb(255, 255, 255, 0.5);
 }
 .box-tabs-nav.active a {
   color: #000;
@@ -356,12 +396,52 @@ button {
   color: #000;
   color: white !important;
 }
-
+.wrappper-find {
+  position: relative;
+  padding-top: 20px;
+  z-index: 10000;
+}
+.seatch-compoent {
+  width: 100%;
+  outline: none;
+  display: flex;
+  max-width: 300px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border: 0;
+  height: 40px;
+  backdrop-filter: blur(500px);
+  border-radius: 5px;
+}
+.icon-song-find {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.seatch-compoent input::placeholder {
+  color: white;
+}
+.seatch-compoent input {
+  width: calc(100% - 40px);
+  outline: none;
+  background-color: transparent;
+  border: 0;
+  font-size: 18px;
+  color: white;
+  height: 40px;
+}
+.wrappper-find {
+  padding-left: 20px;
+  padding-right: 20px;
+}
 .header-playlist {
   position: relative;
   height: 300px;
   width: 100%;
-  display: flex;
+
   color: white;
 }
 .wrapper-box {
@@ -405,7 +485,7 @@ button {
 }
 
 .wrapper-div {
-  width: 100%;
+  width: calc(100% - 250px);
 }
 
 .playlist-detail {
@@ -415,10 +495,13 @@ button {
   width: calc(100% - 260px);
 }
 .playlist-detail-title {
-  font-size: 70px;
+  font-size: 30px;
 }
 .playlist-description {
-  margin-top: 30px;
+  margin-top: 10px;
+  max-height: 150px;
+  overflow: scroll;
+  word-wrap: break-word;
 }
 .table-playlist {
   display: grid;
@@ -449,6 +532,7 @@ button {
   margin-left: 5px;
   margin-right: 5px;
   border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 .preview-siong-image img {
   width: 100%;
@@ -532,6 +616,10 @@ button {
 .button-account button {
   width: 100%;
 }
+.button-account a {
+  color: white;
+  text-decoration: none;
+}
 .button-account {
   width: 100%;
 }
@@ -593,15 +681,15 @@ button {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.wrapper-playlist {
-  margin: 10px;
-}
 .navigation-tabs {
   height: 60px;
+  width: 100%;
   display: flex;
   align-items: center;
   padding: 10px;
   justify-content: space-between;
+  color: white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 .navigation-tabs p {
   font-size: 25px;

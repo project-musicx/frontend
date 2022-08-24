@@ -10,8 +10,10 @@ function ConnectAccount(props) {
   useEffect(() => {
     if (!account) {
       setLoadMenu(true);
+    } else {
+      setLoadMenu(false);
     }
-  }, []);
+  }, [account]);
 
   return loadMenu ? (
     <div className="connection-account-wrapper">

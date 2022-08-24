@@ -7,6 +7,7 @@ function LandingPage(props) {
   const navigate = useNavigate();
   useEffect(() => {
     if (props.user) {
+      navigate("/home");
     } else {
     }
   }, [props.user]);

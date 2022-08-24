@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import PlaylistBox from "../component/playlistBox";
 import { connect } from "react-redux";
+import SpotifyConnectedAccount from "../component/SpotifyConnectedAccount";
 import ConnectAccount from "../component/connectAccount";
 import axios from "axios";
 function Home(props) {
@@ -12,39 +13,7 @@ function Home(props) {
         <p>Home</p>
       </div>
       <div className="tabs-section">
-        <div className="tabs-wrapper">
-          <button
-            onClick={() => {
-              setCurrentTab("spotify");
-            }}
-            className={`sporify-tab ${
-              currentTab === "spotify" ? "active" : ""
-            }`}
-          >
-            Spotify
-          </button>
-          <button
-            onClick={() => {
-              setCurrentTab("appleMusic");
-            }}
-            className={`apple-tab ${
-              currentTab === "appleMusic" ? "active" : ""
-            }`}
-          >
-            Apple Music
-          </button>
-        </div>
-
-        <ConnectAccount user={props.user} type={currentTab} />
-        {currentTab === "spotify" ? (
-          <div className="playlist-section">
-            {props.myPlaylist?.map((item) => {
-              return <PlaylistBox playlist={item} key={item._id} />;
-            })}
-          </div>
-        ) : (
-          ""
-        )}
+        <SpotifyConnectedAccount user={props.user} />
       </div>
     </div>
   );

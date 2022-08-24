@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import PlaylistHeaderDetails from "../component/playlistHeaderDetails";
+import EditPlalist from "../component/editPlaylist";
 import PlaylistTable from "../component/playlistTable";
 import axios from "axios";
 import { connect } from "react-redux";
@@ -13,9 +14,6 @@ function PlaylistDetails() {
       .get(`/api/my-playlist/${id}`)
       .then((result) => {
         setPlaylist(result.data);
-
-        // result.data.track.sort((a, b) => b.popularity - a.popularity);
-        // setTrack(result.data.track);
       })
       .catch((error) => {
         console.log(error);

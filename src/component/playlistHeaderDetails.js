@@ -1,9 +1,11 @@
 import { BsMusicNoteBeamed } from "react-icons/bs";
 import PlayListOptionMenu from "./playListOptionMenu";
+import SearchSong from "./SearchSong";
 import { IoEllipsisHorizontal } from "react-icons/io5";
 function PlaylistHeaderDetails({ playList }) {
   return (
     <div className="header-playlist">
+      <SearchSong />
       <div className="wrapper-box">
         <div className="image-preview">
           {playList?.images?.length ? (

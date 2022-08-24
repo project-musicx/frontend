@@ -20,29 +20,40 @@ function App(props) {
         if (res.data.succes) {
           props.loginAthification(res.data.payload);
           setLogin(true);
+        } else {
+          navigate("/");
         }
+        setchecking(true);
       });
   }
   const [isLogin, setLogin] = useState(false);
+  const [checking, setchecking] = useState(false);
   useEffect(() => {
     checkLogin();
   }, []);
-  return isLogin ? (
-    <div className="App">
-      {isLogin ? <Nav /> : ""}
-      <div className="wrapper-div">
+
+  return checking ? (
+    isLogin ? (
+      <div className="App">
+        {isLogin ? <Nav /> : ""}
+        <div className="wrapper-div">
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/playlist/:id" element={<PlaylistDetails />} />
+          </Routes>
+        </div>
+      </div>
+    ) : (
+      <div className="App">
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/playlist/:id" element={<PlaylistDetails />} />
         </Routes>
       </div>
-    </div>
+    )
   ) : (
-    <div className="App">
-      <Landing />
-    </div>
+    ""
   );
 }
 const mapDispatchToProps = (dispatch) => {

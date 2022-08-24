@@ -1,4 +1,8 @@
-function createPlalist() {
-  return <div className="wrapper-hover">nn</div>;
+function EditPlalist() {
+  return (
+    <div className="wrapper-hover-edit">
+      <div className="wrapper-edit-box"></div>
+    </div>
+  );
 }
-export default createPlalist;
+export default EditPlalist;

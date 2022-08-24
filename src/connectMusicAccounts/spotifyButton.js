@@ -12,6 +12,7 @@ function SpotifyButton() {
     count++;
     if (count !== 1) return;
     const code = new URLSearchParams(window.location.search).get("code");
+    console.log(code);
     if (code !== null) saveToken();
     function saveToken() {
       let playLoad = {
