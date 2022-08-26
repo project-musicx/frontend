@@ -1,15 +1,14 @@
 import { AiOutlineSearch } from "react-icons/ai";
 import { connect } from "react-redux";
 import { useState, useEffect } from "react";
-import { BsFillPlusCircleFill } from "react-icons/bs";
+import AddTrackToSpotifyPlaylistButton from "./AddTrackToSpotifyPlaylistButton";
 import { BsMusicNoteBeamed } from "react-icons/bs";
 import SpotifyWebApi from "spotify-web-api-node";
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.REACT_APP_CLIENT_ID,
 });
-
 function SearchSong(props) {
-  const { user } = props;
+  const { user, playListId } = props;
   const [currentSong, setCurrentSong] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   useEffect(() => {
@@ -20,7 +19,6 @@ function SearchSong(props) {
   }, []);
 
   useEffect(() => {
-    console.log(searchResults);
     if (!currentSong.trim().length) {
       setSearchResults([]);
       return;
@@ -64,7 +62,7 @@ function SearchSong(props) {
       >
         {searchResults?.map((track) => {
           return (
-            <div key={track.id} className="box-song">
+            <div key={track.uri} className="box-song">
               <div className="track-icon">
                 {track.albumUrl ? (
                   <img src={track.albumUrl} />
@@ -79,9 +77,10 @@ function SearchSong(props) {
                 <div className="song-title">{track.title}</div>
                 <div></div>
               </div>
-              <button>
-                <BsFillPlusCircleFill />
-              </button>
+              <AddTrackToSpotifyPlaylistButton
+                track={track}
+                playListId={playListId}
+              />
             </div>
           );
         })}
