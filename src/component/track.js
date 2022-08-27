@@ -1,6 +1,7 @@
 import { AiOutlineHome } from "react-icons/ai";
 import moment from "moment";
 import { BsMusicNoteBeamed } from "react-icons/bs";
+import { IoEllipsisHorizontal, IoCopy } from "react-icons/io5";
 import { BiLogOut } from "react-icons/bi";
 function Track({ track, index }) {
   const date = new Date(track.duration_ms);
@@ -25,7 +26,12 @@ function Track({ track, index }) {
       <div className="header-table">
         {moment(track.release_date).format("MMM Do YY")}
       </div>
-      <div className="header-table last">{`${date.getMinutes()}:${date.getSeconds()}`}</div>
+      <div className="header-table last">
+        <p className="time-of-track">{`${date.getMinutes()}:${date.getSeconds()}`}</p>
+        <button className="track-menu-button">
+          <IoEllipsisHorizontal />
+        </button>
+      </div>
     </div>
   );
 }

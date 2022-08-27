@@ -14,7 +14,7 @@ function TopNav() {
       >
         Log In
       </button>
-      {openLogin ? <LoginComponent /> : ""}
+      {openLogin ? <LoginComponent setopenLogin={setopenLogin} /> : ""}
     </div>
   );
 }
