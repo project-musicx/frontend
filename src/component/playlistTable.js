@@ -3,20 +3,38 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 function PlaylistTable(props) {
-  const { id, user, Alltrack, updateMyTrack } = props;
+  const { id, user, Alltrack, updateMyTrack, updatePlayListCounter } = props;
+  const [tracks, setTracks] = useState([]);
   let spotify = user?.connectedAccounts.find(
     (account) => account.accountType === "spotify"
   );
   let token = spotify?.token;
-  const [tracks, setTracks] = useState([]);
 
   function getPlayListTrack() {
     axios
       .get(`/api/my-playlist-track/${id}/${token}`)
       .then((result) => {
-        Alltrack[id] = result.data;
+        let trackData = result.data.map((track) => {
+          const smallestAlbumImage = track.album.images.reduce(
+            (smallest, image) => {
+              if (image.height < smallest.height) return image;
+              return smallest;
+            },
+            track.album.images[0]
+          );
+          return {
+            artist: track.artists[0].name,
+            title: track.name,
+            uri: track.uri,
+            albumUrl: smallestAlbumImage.url,
+            duration_ms: track.duration_ms,
+            release_date: track.album.release_date,
+            albumName: track.album.name,
+          };
+        });
+        Alltrack[id] = trackData;
         updateMyTrack(Alltrack);
-        setTracks(result.data);
+        setTracks(trackData);
       })
       .catch((error) => {
         console.log(error);
@@ -32,7 +50,7 @@ function PlaylistTable(props) {
         if (token) getPlayListTrack();
       }
     }
-  }, [token, id]);
+  }, [token, id, updatePlayListCounter]);
 
   return (
     <div className="wrapper-playlist">
@@ -45,7 +63,7 @@ function PlaylistTable(props) {
       </section>
       <main className="table-track">
         {tracks?.map((item, index) => {
-          return <Track track={item} index={index} key={item.id} />;
+          return <Track track={item} index={index} key={item.uri + index} />;
         })}
       </main>
     </div>

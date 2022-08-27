@@ -8,7 +8,8 @@ const spotifyApi = new SpotifyWebApi({
   clientId: process.env.REACT_APP_CLIENT_ID,
 });
 function SearchSong(props) {
-  const { user, playListId } = props;
+  const { user, playListId, setUpdatePlayListCounter, updatePlayListCounter } =
+    props;
   const [currentSong, setCurrentSong] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   useEffect(() => {
@@ -38,6 +39,9 @@ function SearchSong(props) {
             title: track.name,
             uri: track.uri,
             albumUrl: smallestAlbumImage.url,
+            duration_ms: track.duration_ms,
+            release_date: track.album.release_date,
+            albumName: track.album.name,
           };
         })
       );
@@ -78,6 +82,8 @@ function SearchSong(props) {
                 <div></div>
               </div>
               <AddTrackToSpotifyPlaylistButton
+                setUpdatePlayListCounter={setUpdatePlayListCounter}
+                updatePlayListCounter={updatePlayListCounter}
                 track={track}
                 playListId={playListId}
               />

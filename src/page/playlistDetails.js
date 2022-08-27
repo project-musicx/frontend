@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 function PlaylistDetails() {
   const [playList, setPlaylist] = useState(null);
+  const [updatePlayListCounter, setUpdatePlayListCounter] = useState(0);
   const { id } = useParams();
 
   function getPlayListDetail() {
@@ -24,9 +25,20 @@ function PlaylistDetails() {
   }, [id]);
   return (
     <div className="home">
-      {playList ? <PlaylistHeaderDetails playList={playList} /> : ""}
+      {playList ? (
+        <PlaylistHeaderDetails
+          updatePlayListCounter={updatePlayListCounter}
+          setUpdatePlayListCounter={setUpdatePlayListCounter}
+          playList={playList}
+        />
+      ) : (
+        ""
+      )}
       <div className="tabs-section">
-        <PlaylistTable id={playList?.playListId} />
+        <PlaylistTable
+          updatePlayListCounter={updatePlayListCounter}
+          id={playList?.playListId}
+        />
       </div>
     </div>
   );

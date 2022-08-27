@@ -5,9 +5,23 @@ import { AiOutlineCheckCircle } from "react-icons/ai";
 import { useState, useEffect } from "react";
 import SmalLoadingSpin from "../loadIngSpinner/SmalLoadingSpin";
 function AddTrackToSpotifyPlaylistButton(props) {
-  const { user, track, playListId } = props;
+  const {
+    user,
+    track,
+    playListId,
+    Alltrack,
+    updateMyTrack,
+    setUpdatePlayListCounter,
+    updatePlayListCounter,
+  } = props;
   const [clickAdd, setClickAdd] = useState(false);
   const [added, setAdded] = useState(false);
+  const addTrack = () => {
+    Alltrack[playListId].unshift(track);
+    console.log(Alltrack[playListId]);
+    updateMyTrack(Alltrack);
+    setUpdatePlayListCounter(updatePlayListCounter + 1);
+  };
   const addSong = () => {
     let spotify = user.connectedAccounts.find(
       (account) => account.accountType === "spotify"
@@ -24,6 +38,7 @@ function AddTrackToSpotifyPlaylistButton(props) {
       })
       .then((response) => {
         setAdded(true);
+        addTrack();
       });
   };
 
@@ -44,6 +59,17 @@ function AddTrackToSpotifyPlaylistButton(props) {
 const mapstateToProps = (state) => {
   return {
     user: state.user,
+    Alltrack: state.track,
   };
 };
-export default connect(mapstateToProps, null)(AddTrackToSpotifyPlaylistButton);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateMyTrack: (data) => {
+      dispatch({ type: "UPDATE_PLAYLIST_TRACK", data: data });
+    },
+  };
+};
+export default connect(
+  mapstateToProps,
+  mapDispatchToProps
+)(AddTrackToSpotifyPlaylistButton);
