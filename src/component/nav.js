@@ -12,15 +12,15 @@ function Nav({ playlist }) {
       <LoadAccount />
       <div className="navigation-section">
         <div className="section-nav">
-          <div className="box-tabs-nav active">
+          <NavLink to="/home" className="box-tabs-nav">
             <div className="box-icon">
               {" "}
               <AiOutlineHome />
             </div>
-            <NavLink to="/home">Home</NavLink>
-          </div>
+            <p>Home</p>
+          </NavLink>
           <div className="render-my-play-list">
-            <p className="title-ofbox">Playlists</p>
+            {/* <p className="title-ofbox">Playlists</p> */}
             <PlaylistNames />
           </div>
         </div>

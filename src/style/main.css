@@ -178,8 +178,8 @@ button {
   width: 100%;
   position: absolute;
   overflow: scroll;
-  background-color: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(30px);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   display: none;
@@ -433,7 +433,7 @@ button {
   cursor: pointer;
   color: rgba(255, 255, 255, 0.5);
 }
-.box-tabs-nav a {
+.box-tabs-nav {
   text-decoration: none;
 }
 .render-my-play-list {
@@ -457,6 +457,7 @@ button {
   color: white;
 }
 .box-name-playlist.active {
+  font-weight: bold;
   color: white;
 }
 .title-ofbox {
@@ -467,16 +468,13 @@ button {
   font-size: 20px;
 }
 .box-tabs-nav.active {
-  background-color: rgb(255, 255, 255, 0.5);
 }
-.box-tabs-nav.active a {
-  color: #000;
+.box-tabs-nav.active {
   font-weight: bold;
-  color: white !important;
+  color: white;
 }
 .box-tabs-nav.active .box-icon {
-  color: #000;
-  color: white !important;
+  color: white;
 }
 .wrappper-find {
   position: relative;
@@ -488,7 +486,7 @@ button {
   outline: none;
   display: flex;
   max-width: 300px;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(0, 0, 0, 0.4);
   border: 0;
   height: 40px;
   border-radius: 5px;
@@ -798,10 +796,10 @@ button {
   width: 20px;
   height: 20px;
   margin: 8px;
-  border: 2px solid #6f56e5;
+  border: 2px solid #0f141e;
   border-radius: 50%;
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #7a41f2 transparent transparent transparent;
+  border-color: #0f141e transparent transparent transparent;
 }
 .lds-ring div:nth-child(1) {
   animation-delay: -0.45s;
