@@ -2,10 +2,18 @@ import { BsMusicNoteBeamed } from "react-icons/bs";
 import PlayListOptionMenu from "./playListOptionMenu";
 import SearchSong from "./SearchSong";
 import { IoEllipsisHorizontal } from "react-icons/io5";
-function PlaylistHeaderDetails({ playList }) {
+function PlaylistHeaderDetails({
+  playList,
+  setUpdatePlayListCounter,
+  updatePlayListCounter,
+}) {
   return (
     <div className="header-playlist">
-      <SearchSong />
+      <SearchSong
+        setUpdatePlayListCounter={setUpdatePlayListCounter}
+        updatePlayListCounter={updatePlayListCounter}
+        playListId={playList.playListId}
+      />
       <div className="wrapper-box">
         <div className="image-preview">
           {playList?.images?.length ? (

@@ -2,8 +2,10 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
+import { IoMdClose } from "react-icons/io";
 
-function LoginComponent() {
+function LoginComponent(props) {
+  const { setopenLogin } = props;
   let navigate = useNavigate();
   function handleCallBackResponse(response) {
     var user_object = jwt_decode(response.credential);
@@ -34,7 +36,17 @@ function LoginComponent() {
   return (
     <div className="login-box">
       <div className="login-component">
-        <div className="title-of-compoent">Login To Micxy</div>
+        <div className="title-of-compoent">
+          <p>Login To Micxy</p>
+          <div
+            onClick={() => {
+              setopenLogin(false);
+            }}
+            className="close-that"
+          >
+            <IoMdClose />
+          </div>
+        </div>
         <div id="sign-in"></div>
       </div>
     </div>
