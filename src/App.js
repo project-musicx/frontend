@@ -26,6 +26,7 @@ function App(props) {
         setchecking(true);
       });
   }
+
   const [isLogin, setLogin] = useState(false);
   const [checking, setchecking] = useState(false);
   useEffect(() => {
