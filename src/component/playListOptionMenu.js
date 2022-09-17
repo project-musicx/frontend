@@ -69,53 +69,25 @@ class PlayListOptionMenu extends Component {
                 <div className="hold-thatiocom">
                   <BsFillPlusCircleFill />
                 </div>
-                <button
-                  onClick={() => {
-                    this.props.handleopen(true);
-                  }}
-                  className="edit-the-program"
-                >
-                  Create Playlist
-                </button>
+                <button className="edit-the-program">Create Playlist</button>
               </div>
               <div className="button-div">
                 <div className="hold-thatiocom">
                   <MdDelete />
                 </div>
-                <button
-                  onClick={() => {
-                    this.props.handleopen(true);
-                  }}
-                  className="edit-the-program"
-                >
-                  Delete Playlist
-                </button>
+                <button className="edit-the-program">Delete Playlist</button>
               </div>
               <div className="button-div">
                 <div className="hold-thatiocom">
                   <IoCopy />
                 </div>
-                <button
-                  onClick={() => {
-                    this.props.handleopen(true);
-                  }}
-                  className="edit-the-program"
-                >
-                  Copy Playlist
-                </button>
+                <button className="edit-the-program">Copy Playlist</button>
               </div>
               <div className="button-div">
                 <div className="hold-thatiocom">
                   <MdEdit />
                 </div>
-                <button
-                  onClick={() => {
-                    this.props.handleopen(true);
-                  }}
-                  className="edit-the-program"
-                >
-                  Edit Playlist
-                </button>
+                <button className="edit-the-program">Edit Playlist</button>
               </div>
             </div>
           </div>

@@ -6,10 +6,7 @@ import TopNav from "../component/TopNav";
 function LandingPage(props) {
   const navigate = useNavigate();
   useEffect(() => {
-    if (props.user) {
-      navigate("/home");
-    } else {
-    }
+    if (props.user) navigate("/home");
   }, [props.user]);
 
   return (

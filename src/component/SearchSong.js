@@ -8,7 +8,7 @@ const spotifyApi = new SpotifyWebApi({
   clientId: process.env.REACT_APP_CLIENT_ID,
 });
 function SearchSong(props) {
-  const { user, playListId, setUpdatePlayListCounter, updatePlayListCounter } =
+  const { user, playlistId, setUpdatePlayListCounter, updatePlayListCounter } =
     props;
   const [currentSong, setCurrentSong] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -85,7 +85,7 @@ function SearchSong(props) {
                 setUpdatePlayListCounter={setUpdatePlayListCounter}
                 updatePlayListCounter={updatePlayListCounter}
                 track={track}
-                playListId={playListId}
+                playlistId={playlistId}
               />
             </div>
           );

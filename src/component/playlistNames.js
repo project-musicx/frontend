@@ -27,8 +27,8 @@ function PlaylistNames(props) {
     <div className="wrapper-playlistName">
       {myPlaylist?.map((item) => (
         <NavLink
-          to={`/playlist/${item._id}`}
-          key={item._id}
+          to={`/playlist/${item.id}`}
+          key={item.id}
           className="box-name-playlist"
         >
           {item.playlistName}
