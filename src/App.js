@@ -36,7 +36,7 @@ function App(props) {
   return checking ? (
     isLogin ? (
       <div className="App">
-        {isLogin ? <Nav /> : ""}
+        <Nav />
         <div className="wrapper-div">
           <Routes>
             <Route path="/" element={<Landing />} />

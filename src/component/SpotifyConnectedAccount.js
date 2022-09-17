@@ -10,7 +10,7 @@ function SpotifyConnectedAccount(props) {
         <ConnectAccount user={props.user} type={"spotify"} />
         <div className="playlist-section">
           {props.myPlaylist?.map((item) => {
-            return <PlaylistBox playlist={item} key={item._id} />;
+            return <PlaylistBox playlist={item} key={item.id} />;
           })}
         </div>
       </div>

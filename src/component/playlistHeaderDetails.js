@@ -12,7 +12,7 @@ function PlaylistHeaderDetails({
       <SearchSong
         setUpdatePlayListCounter={setUpdatePlayListCounter}
         updatePlayListCounter={updatePlayListCounter}
-        playListId={playList.playListId}
+        playlistId={playList.id}
       />
       <div className="wrapper-box">
         <div className="image-preview">
