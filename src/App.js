@@ -10,6 +10,7 @@ import axios from "axios";
 import Landing from "./page/LandingPage";
 import PlaylistDetails from "./page/playlistDetails";
 import Home from "./page/home";
+console.log(window.MusicKit);
 function App(props) {
   const navigate = useNavigate();
   const { user } = props;

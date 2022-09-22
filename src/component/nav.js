@@ -3,7 +3,8 @@ import { BiLogOut } from "react-icons/bi";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import LoadAccount from "./LoadAccount";
-import PlaylistNames from "./playlistNames";
+import SpotifyPlaylistNames from "./SpotifyPlaylistNames";
+import AppleMusicPlaylistNames from "./AppleMusicPlaylistNames";
 
 function Nav({ playlist }) {
   return (
@@ -21,7 +22,8 @@ function Nav({ playlist }) {
           </NavLink>
           <div className="render-my-play-list">
             {/* <p className="title-ofbox">Playlists</p> */}
-            <PlaylistNames />
+            <SpotifyPlaylistNames />
+            <AppleMusicPlaylistNames />
           </div>
         </div>
         <div className="log-out">

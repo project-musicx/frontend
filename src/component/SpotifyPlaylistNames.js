@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "axios";
-function PlaylistNames(props) {
+function SpotifyPlaylistNames(props) {
   const { user } = props;
   const [myPlaylist, setPlaylist] = useState([]);
   function getPlayList() {
@@ -11,8 +11,6 @@ function PlaylistNames(props) {
       .then((result) => {
         props.updatePlayList(result.data);
         setPlaylist(result.data);
-        // result.data.track.sort((a, b) => b.popularity - a.popularity);
-        // setTrack(result.data.track);
       })
       .catch((error) => {
         console.log(error);
@@ -50,4 +48,7 @@ const mapDispatchToProps = (dispatch) => {
     },
   };
 };
-export default connect(mapstateToProps, mapDispatchToProps)(PlaylistNames);
+export default connect(
+  mapstateToProps,
+  mapDispatchToProps
+)(SpotifyPlaylistNames);
