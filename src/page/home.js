@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import SpotifyConnectedAccount from "../component/SpotifyConnectedAccount";
+import AppleConnectedAccount from "../component/AppleConnectedAccount";
 function Home(props) {
   const { user } = props;
   return (
@@ -9,6 +10,7 @@ function Home(props) {
       </div>
       <div className="tabs-section">
         <SpotifyConnectedAccount user={props.user} />
+        <AppleConnectedAccount user={props.user} />
       </div>
     </div>
   );

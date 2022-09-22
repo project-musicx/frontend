@@ -1,9 +1,7 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 let count = 0;
 function SpotifyButton() {
-  let navigate = useNavigate();
   const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
   const REDIRECT_URI = "http://localhost:3000/home";
   const AUTH_URL = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=code&redirect_uri=${REDIRECT_URI}&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state%20ugc-image-upload%20user-read-currently-playing%20app-remote-control%20playlist-read-collaborative%20playlist-modify-public%20playlist-read-private%20user-top-read%20playlist-modify-private%20user-read-playback-position%20user-read-recently-played%20user-follow-read%20user-follow-modify`;
@@ -12,7 +10,6 @@ function SpotifyButton() {
     count++;
     if (count !== 1) return;
     const code = new URLSearchParams(window.location.search).get("code");
-    console.log(code);
     if (code !== null) saveToken();
     function saveToken() {
       let playLoad = {
@@ -30,7 +27,7 @@ function SpotifyButton() {
   return (
     <div className="button-account">
       <button>
-        <a href={AUTH_URL}>Spotify Account</a>
+        <a href={AUTH_URL}>Apple Music Account</a>
       </button>
     </div>
   );
