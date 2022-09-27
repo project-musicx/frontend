@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import Nav from "./component/nav";
 import axios from "axios";
 import Landing from "./page/LandingPage";
+import MusicSyncSpace from "./page/Spotifyspace/MusicSyncSpace";
 import PlaylistDetails from "./page/playlistDetails";
 import Home from "./page/home";
 console.log(window.MusicKit);
@@ -44,6 +45,7 @@ function App(props) {
             <Route path="/login" element={<Login />} />
             <Route path="/home" element={<Home />} />
             <Route path="/playlist/:id" element={<PlaylistDetails />} />
+            <Route path="/sync/:id" element={<MusicSyncSpace />} />
           </Routes>
         </div>
       </div>
