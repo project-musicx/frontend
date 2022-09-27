@@ -4,7 +4,11 @@ import { BsMusicNoteBeamed } from "react-icons/bs";
 import { IoEllipsisHorizontal, IoCopy } from "react-icons/io5";
 import { BiLogOut } from "react-icons/bi";
 function Track({ track, index }) {
-  const date = new Date(track.duration_ms);
+  const formatDuration = (milliseconds) => {
+    var minutes = Math.floor(milliseconds / 60000);
+    var seconds = ((milliseconds % 60000) / 1000).toFixed(0);
+    return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+  };
   return (
     <div className="tack-table">
       <div className="header-table">{index + 1}</div>
@@ -27,7 +31,7 @@ function Track({ track, index }) {
         {moment(track.release_date).format("MMM Do YY")}
       </div>
       <div className="header-table last">
-        <p className="time-of-track">{`${date.getMinutes()}:${date.getSeconds()}`}</p>
+        <p className="time-of-track">{formatDuration(track.duration_ms)}</p>
         <button className="track-menu-button">
           <IoEllipsisHorizontal />
         </button>

@@ -152,6 +152,8 @@ button {
   padding-right: 5px;
   display: flex;
   max-width: 100%;
+
+  height: 20px;
   line-height: 1;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
@@ -163,7 +165,7 @@ button {
   overflow: hidden;
   display: -webkit-box !important;
   padding-right: 5px;
-  margin-top: 1px;
+  margin-top: 3px;
   display: flex;
   max-width: 100%;
   line-height: 1;
@@ -185,6 +187,9 @@ button {
   border-bottom-right-radius: 5px;
   display: none;
 }
+.render-the-song.sync {
+  max-width: 500px;
+}
 .render-the-song.active {
   display: block;
 }
@@ -193,10 +198,21 @@ button {
   display: flex;
   align-items: center;
   padding: 5px;
+  color: white;
+  border-radius: 5px;
   justify-content: space-between;
+}
+.box-song.sync:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+}
+.box-song.current-playing-song {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 .box-song button {
   width: 40px;
+
   height: 40px;
   display: flex;
   align-items: center;
@@ -208,7 +224,7 @@ button {
 }
 .track-details {
   height: 40px;
-  width: calc(100% - 85px);
+  width: calc(100% - 100px);
 }
 .track-icon {
   width: 40px;
@@ -413,7 +429,7 @@ button {
   max-width: 250px;
   padding: 10px;
   color: white;
-  background-color: #0f141e;
+  background-color: #121824;
 }
 .title-of-the-product {
   height: 50px;
@@ -505,6 +521,11 @@ button {
   padding-top: 20px;
   z-index: 10000;
 }
+.wrappper-find-sync {
+  position: relative;
+  color: white;
+  z-index: 10000;
+}
 .seatch-compoent {
   width: 100%;
   outline: none;
@@ -514,6 +535,9 @@ button {
   border: 0;
   height: 40px;
   border-radius: 5px;
+}
+.seatch-compoent.sync {
+  max-width: 500px;
 }
 .seatch-compoent.active {
   border-radius: 0px;
@@ -855,12 +879,16 @@ button {
 }
 
 .spotify-box-player {
+  padding: 5px;
   display: block;
   position: fixed;
   bottom: 0;
   height: 70px;
+  border-radius: 5px;
   background-color: #212121;
-  width: calc(100% - 250px);
+  width: calc(100% - 270px);
+  margin-bottom: 10px;
+  margin-left: 10px;
 }
 
 .container-player {
@@ -868,15 +896,139 @@ button {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 0.4fr 60px 1fr;
 }
 
 .wrapper-music-playing {
-  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  padding: 5px;
 }
-.timer-silder {
-  border: 1px solid red;
+.player-cirlce {
+  width: 50px;
+  height: 50px;
+  margin-right: 5px;
+  border-radius: 5px;
+  overflow: hidden;
 }
+.player-cirlce img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  object-fit: cover;
+}
+.current-track-singer {
+  color: white;
+  width: 100%;
+  height: 25px;
+  font-weight: bold;
+}
+.curr-track-name {
+  color: white;
+  width: 100%;
+  height: 20px;
+  overflow: hidden;
+  display: -webkit-box !important;
+  padding-right: 5px;
+  max-width: 100%;
+  line-height: 1;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  border: 1px solid transparent;
+  text-overflow: ellipsis;
+}
+.track-info {
+  height: 50px;
+  width: calc(100% - 55px);
+}
+.timer-player {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+}
+.track-player {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  color: white;
+}
+.timer-slider {
+  display: flex;
+  padding: 5px;
+  align-items: center;
+}
+.current-timer {
+  width: 50px;
+
+  height: 50px;
+  display: flex;
+  color: white;
+  align-items: center;
+  justify-content: center;
+}
+.slider-div {
+  width: 100%;
+  height: 5px;
+  border-radius: 30px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.progess-bar {
+  transition: width 2ms linear;
+  height: 100%;
+  border-radius: 30px;
+  background-color: white;
+  width: 50%;
+}
+.track-slider {
+  width: calc(100% - 100px);
+
+  margin-left: 5px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px;
+}
+
 .timer-minutes {
-  border: 1px solid red;
+}
+
+.wrapperjj-sync {
+  height: 100%;
+}
+
+.container-sync {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 60px);
+}
+.playlist-queue-wrapper {
+  width: 100%;
+  max-width: 500px;
+  height: 100%;
+  padding: 10px;
+}
+.titler-room-banner {
+  height: 60px;
+}
+.wrapper-playlist-wraper {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.wrpaer-queue {
+}
+.title-queue {
+  font-size: 20px;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px;
 }
