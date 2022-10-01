@@ -1,5 +1,6 @@
 import SyncPlayer from "./SyncPlayer";
 import { useEffect, useState } from "react";
+import axios from "axios";
 import RenderManageAndSyncTrack from "./RenderManageAndSyncTrack";
 import HeadSpaceSync from "./HeadSpaceSync";
 function MusicSyncSpace() {
@@ -10,8 +11,13 @@ function MusicSyncSpace() {
     setCurrentPlayingTrack(track);
   }
   function beginPlayingSong() {}
+  useEffect(() => {
+    axios
+      .post("/api/transition-musicsyncspace", { musicsyncspace: true })
+      .then((result) => {});
+  }, []);
   return (
-    <div className="wrapperjj-sync">
+    <div className="home">
       <HeadSpaceSync
         currentPlayingTrack={currentPlayingTrack}
         updateCurrentTrack={updateCurrentTrack}
