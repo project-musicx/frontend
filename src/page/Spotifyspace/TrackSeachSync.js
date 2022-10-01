@@ -8,14 +8,9 @@ import SpotifyWebApi from "spotify-web-api-node";
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.REACT_APP_CLIENT_ID,
 });
+
 function TrackSeachSync(props) {
-  const {
-    user,
-    playlistId,
-    setUpdatePlayListCounter,
-    queueTrack,
-    setQueueTrack,
-  } = props;
+  const { user, queueTrack, setQueueTrack } = props;
   const [currentSong, setCurrentSong] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   useEffect(() => {
@@ -28,33 +23,59 @@ function TrackSeachSync(props) {
     setCurrentSong("");
     setSearchResults([]);
   }
+  function mapTrack(tracks) {
+    let newTracks = tracks.map((track) => {
+      const smallestAlbumImage = track.album.images.reduce(
+        (smallest, image) => {
+          if (image.height > smallest.height) return image;
+          return smallest;
+        },
+        track.album.images[0]
+      );
+      return {
+        artist: track.artists[0].name,
+        title: track.name,
+        uri: track.uri,
+        albumUrl: smallestAlbumImage.url,
+        duration_ms: track.duration_ms,
+        release_date: track.album.release_date,
+        albumName: track.album.name,
+      };
+    });
+    return newTracks;
+  }
+
+  useEffect(() => {
+    spotifyApi
+      .getMyRecentlyPlayedTracks({
+        limit: 15,
+      })
+      .then(
+        function (data) {
+          let recentTracks = data.body.items.map((item) => item.track);
+          let uniqueRecord = [];
+          for (let track of mapTrack(recentTracks)) {
+            if (!uniqueRecord.some((item) => item.uri === track.uri)) {
+              uniqueRecord.push(track);
+            }
+          }
+
+          setQueueTrack(uniqueRecord);
+        },
+        function (err) {
+          console.log("Something went wrong!", err);
+        }
+      );
+  }, []);
 
   useEffect(() => {
     if (!currentSong.trim().length) {
       setSearchResults([]);
       return;
     }
+
     spotifyApi.searchTracks(currentSong).then((res) => {
-      setSearchResults(
-        res.body.tracks.items.map((track) => {
-          const smallestAlbumImage = track.album.images.reduce(
-            (smallest, image) => {
-              if (image.height < smallest.height) return image;
-              return smallest;
-            },
-            track.album.images[0]
-          );
-          return {
-            artist: track.artists[0].name,
-            title: track.name,
-            uri: track.uri,
-            albumUrl: smallestAlbumImage.url,
-            duration_ms: track.duration_ms,
-            release_date: track.album.release_date,
-            albumName: track.album.name,
-          };
-        })
-      );
+      setSearchResults(mapTrack(res.body.tracks.items));
     });
   }, [currentSong]);
   return (

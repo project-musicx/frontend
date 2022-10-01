@@ -3,24 +3,26 @@ import "./style/main.css";
 import Login from "./component/login";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Nav from "./component/nav";
 import axios from "axios";
 import Landing from "./page/LandingPage";
 import MusicSyncSpace from "./page/Spotifyspace/MusicSyncSpace";
 import PlaylistDetails from "./page/playlistDetails";
+import socket from "./socketConfig";
 import Home from "./page/home";
-console.log(window.MusicKit);
 function App(props) {
   const navigate = useNavigate();
-  const { user } = props;
   function checkLogin() {
     axios
       .post("/api/auth/check-login", { withCredentials: true })
       .then((res) => {
         if (res.data.succes) {
           props.loginAthification(res.data.payload);
+          let userId = res.data.payload._id;
+          socket.auth = userId;
+          socket.connect();
           setLogin(true);
         } else {
           navigate("/");
@@ -45,7 +47,7 @@ function App(props) {
             <Route path="/login" element={<Login />} />
             <Route path="/home" element={<Home />} />
             <Route path="/playlist/:id" element={<PlaylistDetails />} />
-            <Route path="/sync/:id" element={<MusicSyncSpace />} />
+            <Route path="/musicsyncspace" element={<MusicSyncSpace />} />
           </Routes>
         </div>
       </div>

@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import LoadAccount from "./LoadAccount";
 import SpotifyPlaylistNames from "./SpotifyPlaylistNames";
 import AppleMusicPlaylistNames from "./AppleMusicPlaylistNames";
+import { IoSyncOutline } from "react-icons/io5";
 
 function Nav({ playlist }) {
   return (
@@ -15,21 +16,23 @@ function Nav({ playlist }) {
         <div className="section-nav">
           <NavLink to="/home" className="box-tabs-nav">
             <div className="box-icon">
-              {" "}
               <AiOutlineHome />
             </div>
             <p>Home</p>
           </NavLink>
+          <NavLink to="/musicsyncspace" className="box-tabs-nav">
+            <div className="box-icon">
+              <IoSyncOutline />
+            </div>
+            <p>Space</p>
+          </NavLink>
           <div className="render-my-play-list">
-            {/* <p className="title-ofbox">Playlists</p> */}
             <SpotifyPlaylistNames />
-            <AppleMusicPlaylistNames />
           </div>
         </div>
         <div className="log-out">
           <div className="box-tabs-nav">
             <div className="box-icon">
-              {" "}
               <BiLogOut />
             </div>
             <div>Logout</div>

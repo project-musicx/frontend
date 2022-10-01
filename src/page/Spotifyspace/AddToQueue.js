@@ -4,25 +4,23 @@ import axios from "axios";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { useState, useEffect } from "react";
 function AddToQueue(props) {
-  const {
-    user,
-    track,
-    queueTrack,
-    playlistId,
-    setUpdatePlayListCounter,
-    updatePlayListCounter,
-    setQueueTrack,
-  } = props;
+  const { track, queueTrack, setQueueTrack } = props;
   const [clickAdd, setClickAdd] = useState(false);
   const [added, setAdded] = useState(false);
 
   const addSong = () => {
     let currentTracks = queueTrack.slice();
     currentTracks.push(track);
-    console.log(currentTracks);
     setQueueTrack(currentTracks);
   };
 
+  useEffect(() => {
+    if (queueTrack.some((item) => item.uri === track.uri)) {
+      setAdded(true);
+    } else {
+      setAdded(false);
+    }
+  }, [queueTrack.length]);
   return (
     <>
       <button>

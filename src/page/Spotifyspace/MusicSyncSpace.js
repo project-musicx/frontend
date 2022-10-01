@@ -1,6 +1,8 @@
 import SyncPlayer from "./SyncPlayer";
 import { useEffect, useState } from "react";
+import axios from "axios";
 import RenderManageAndSyncTrack from "./RenderManageAndSyncTrack";
+import HeadSpaceSync from "./HeadSpaceSync";
 function MusicSyncSpace() {
   const [queueTrack, setQueueTrack] = useState([]);
   const [currentPlayingTrack, setCurrentPlayingTrack] = useState({});
@@ -9,9 +11,19 @@ function MusicSyncSpace() {
     setCurrentPlayingTrack(track);
   }
   function beginPlayingSong() {}
+  useEffect(() => {
+    axios
+      .post("/api/transition-musicsyncspace", { musicsyncspace: true })
+      .then((result) => {});
+  }, []);
   return (
-    <div className="wrapperjj-sync">
-      <div className="titler-room-banner"></div>
+    <div className="home">
+      <HeadSpaceSync
+        currentPlayingTrack={currentPlayingTrack}
+        updateCurrentTrack={updateCurrentTrack}
+        queueTrack={queueTrack}
+        setQueueTrack={setQueueTrack}
+      />
       <div className="container-sync">
         <div className="playlist-queue-wrapper">
           <RenderManageAndSyncTrack

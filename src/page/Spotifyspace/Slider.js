@@ -1,9 +1,9 @@
+import { useEffect, useState } from "react";
 function Slider(props) {
   const { currentPlayingTrack, currentSecond } = props;
   function converToWidth() {
     var seconds = (currentPlayingTrack.duration_ms / 1000).toFixed(0);
     let percentage = Math.floor((currentSecond / seconds) * 100);
-    console.log(currentSecond, percentage);
     return percentage;
   }
 
