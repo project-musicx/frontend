@@ -2,8 +2,9 @@ import { connect } from "react-redux";
 import { useEffect, useState } from "react";
 import { FaPlay, FaPause } from "react-icons/fa";
 import { BsMusicNoteBeamed } from "react-icons/bs";
+import useInterval from "../../hooks/useInterval";
 import Slider from "./Slider";
-let count = 0;
+let interval;
 let currentSecond = 0;
 const SpotifyWebApi = require("spotify-web-api-node");
 function SyncPlayer(props) {
@@ -22,11 +23,44 @@ function SyncPlayer(props) {
   spotifyApi.setAccessToken(account?.token);
   const [isPlaying, setIsPlaying] = useState(false);
 
+  function converToWidth() {
+    var seconds = (currentPlayingTrack.duration_ms / 1000).toFixed(0);
+    let percentage = Math.floor((currentSecond / seconds) * 100);
+    return percentage;
+  }
+
+  function debounce(callback, delay, immediate = false) {
+    let timerId;
+    return function (...args) {
+      clearTimeout(timerId);
+      const shouldCall = timerId == null && immediate;
+      if (shouldCall) {
+        callback.apply(this, args);
+      }
+
+      timerId = setTimeout(() => {
+        if (!immediate) {
+          callback.apply(this, args);
+        }
+        timerId = null;
+      }, delay);
+    };
+  }
+
+  function pause() {
+    spotifyApi.pause().then(
+      function () {
+        clearInterval(interval);
+        setIsPlaying(false);
+      },
+      function (err) {
+        console.log("Something went wrong!", err);
+      }
+    );
+  }
   function UpdateSlider() {
-    if (count) return;
-    count++;
-    console.log("jjjt");
-    const interval = setInterval(() => {
+    if (interval) clearInterval(interval);
+    interval = setInterval(() => {
       ++currentSecond;
       setTime(currentSecond);
     }, 1000);
@@ -34,7 +68,16 @@ function SyncPlayer(props) {
 
   useEffect(() => {
     playSong();
+    clearInterval(interval);
+    currentSecond = 0;
   }, [currentPlayingTrack.uri]);
+  useEffect(() => {
+    if (converToWidth() === 100) {
+      clearInterval(interval);
+      currentSecond = 0;
+      UpdateSlider();
+    }
+  });
   function playSong() {
     let songQueue = [currentPlayingTrack.uri];
     spotifyApi.play({ uris: songQueue }).then(
@@ -71,11 +114,11 @@ function SyncPlayer(props) {
         </div>
         <div className="timer-player">
           {!isPlaying ? (
-            <div className="track-player">
+            <div onClick={playSong} className="track-player">
               <FaPlay />
             </div>
           ) : (
-            <div className="track-player">
+            <div onClick={pause} className="track-player">
               <FaPause />
             </div>
           )}

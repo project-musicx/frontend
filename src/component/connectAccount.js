@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import SpotifyButton from "../connectMusicAccounts/spotifyButton";
-import AppleMusicButton from "../connectMusicAccounts/AppleMusic";
+// import AppleMusicButton from "../connectMusicAccounts/AppleMusic";
 function ConnectAccount(props) {
   const { type, user } = props;
   const [loadMenu, setLoadMenu] = useState(false);
@@ -27,7 +27,7 @@ function ConnectAccount(props) {
         </div>
         <div className="wrapper-for-link">
           {type === "spotify" ? <SpotifyButton /> : ""}
-          {type === "appleMusic" ? <AppleMusicButton /> : ""}
+          {/* {type === "appleMusic" ? <AppleMusicButton /> : ""} */}
         </div>
       </div>
     </div>

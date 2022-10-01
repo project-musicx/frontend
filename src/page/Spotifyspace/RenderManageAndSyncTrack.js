@@ -14,7 +14,7 @@ function RenderManageAndSyncTrack(props) {
 
   return (
     <div className="wrapper-playlist-wraper">
-      <TrackSeachSync queueTrack={queueTrack} setQueueTrack={setQueueTrack} />
+      {/* <TrackSeachSync queueTrack={queueTrack} setQueueTrack={setQueueTrack} /> */}
       <div className="wrpaer-queue">
         <p className="title-queue">Playlist Queue</p>
         <main className="table-track">
@@ -30,6 +30,13 @@ function RenderManageAndSyncTrack(props) {
             );
           })}
         </main>
+
+        <main className="table-track">
+          {queueTrack.length===0?<div>
+          
+          </div>:""}
+        </main>
+
       </div>
     </div>
   );

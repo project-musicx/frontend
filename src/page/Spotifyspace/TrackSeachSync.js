@@ -9,13 +9,7 @@ const spotifyApi = new SpotifyWebApi({
   clientId: process.env.REACT_APP_CLIENT_ID,
 });
 function TrackSeachSync(props) {
-  const {
-    user,
-    playlistId,
-    setUpdatePlayListCounter,
-    queueTrack,
-    setQueueTrack,
-  } = props;
+  const { user, queueTrack, setQueueTrack } = props;
   const [currentSong, setCurrentSong] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   useEffect(() => {
@@ -39,7 +33,7 @@ function TrackSeachSync(props) {
         res.body.tracks.items.map((track) => {
           const smallestAlbumImage = track.album.images.reduce(
             (smallest, image) => {
-              if (image.height < smallest.height) return image;
+              if (image.height > smallest.height) return image;
               return smallest;
             },
             track.album.images[0]

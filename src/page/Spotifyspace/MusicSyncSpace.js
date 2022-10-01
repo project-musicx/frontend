@@ -1,6 +1,7 @@
 import SyncPlayer from "./SyncPlayer";
 import { useEffect, useState } from "react";
 import RenderManageAndSyncTrack from "./RenderManageAndSyncTrack";
+import HeadSpaceSync from "./HeadSpaceSync";
 function MusicSyncSpace() {
   const [queueTrack, setQueueTrack] = useState([]);
   const [currentPlayingTrack, setCurrentPlayingTrack] = useState({});
@@ -11,7 +12,12 @@ function MusicSyncSpace() {
   function beginPlayingSong() {}
   return (
     <div className="wrapperjj-sync">
-      <div className="titler-room-banner"></div>
+      <HeadSpaceSync
+        currentPlayingTrack={currentPlayingTrack}
+        updateCurrentTrack={updateCurrentTrack}
+        queueTrack={queueTrack}
+        setQueueTrack={setQueueTrack}
+      />
       <div className="container-sync">
         <div className="playlist-queue-wrapper">
           <RenderManageAndSyncTrack
