@@ -10,7 +10,7 @@ const spotifyApi = new SpotifyWebApi({
 });
 
 function TrackSeachSync(props) {
-  const { user, queueTrack, setQueueTrack } = props;
+  const { user, queueTrack, setQueueTrack, setCurrentPlayingTrack } = props;
   const [currentSong, setCurrentSong] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   useEffect(() => {
@@ -59,8 +59,6 @@ function TrackSeachSync(props) {
               uniqueRecord.push(track);
             }
           }
-
-          setQueueTrack(uniqueRecord);
         },
         function (err) {
           console.log("Something went wrong!", err);
