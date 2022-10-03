@@ -7,7 +7,6 @@ function ConnectAccount(props) {
   const account = user?.connectedAccounts.find(
     (account) => account.accountType === type
   );
-  console.log(user);
   useEffect(() => {
     if (!account) {
       setLoadMenu(true);

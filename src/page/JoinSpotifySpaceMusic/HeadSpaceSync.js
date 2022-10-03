@@ -3,10 +3,19 @@ import TrackSeachSync from "./TrackSeachSync";
 // import trackOptionMenu from "./trackOptionMenu";
 // import SearchSong from "./SearchSong";
 import { IoEllipsisHorizontal } from "react-icons/io5";
-function HeadSpaceSync({ currentPlayingTrack, queueTrack, setQueueTrack }) {
+function HeadSpaceSync({
+  currentPlayingTrack,
+  queueTrack,
+  setQueueTrack,
+  setCurrentPlayingTrack,
+}) {
   return (
     <div className="header-track">
-      <TrackSeachSync queueTrack={queueTrack} setQueueTrack={setQueueTrack} />
+      <TrackSeachSync
+        setCurrentPlayingTrack={setCurrentPlayingTrack}
+        queueTrack={queueTrack}
+        setQueueTrack={setQueueTrack}
+      />
 
       <div className="wrapper-box">
         <div className="image-preview">

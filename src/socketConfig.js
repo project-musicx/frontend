@@ -5,4 +5,5 @@ const socket = io(ApiUrl.network, {
   upgrade: false,
   autoConnect: false,
 });
+
 export default socket;

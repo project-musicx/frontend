@@ -29,24 +29,6 @@ function SyncPlayer(props) {
     return percentage;
   }
 
-  function debounce(callback, delay, immediate = false) {
-    let timerId;
-    return function (...args) {
-      clearTimeout(timerId);
-      const shouldCall = timerId == null && immediate;
-      if (shouldCall) {
-        callback.apply(this, args);
-      }
-
-      timerId = setTimeout(() => {
-        if (!immediate) {
-          callback.apply(this, args);
-        }
-        timerId = null;
-      }, delay);
-    };
-  }
-
   function pause() {
     spotifyApi.pause().then(
       function () {

@@ -27,7 +27,7 @@ function SpotifyButton() {
   return (
     <div className="button-account">
       <button>
-        <a href={AUTH_URL}>Apple Music Account</a>
+        <a href={AUTH_URL}>Spotify Music Account</a>
       </button>
     </div>
   );

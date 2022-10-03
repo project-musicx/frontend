@@ -8,21 +8,27 @@ import { useState, useEffect } from "react";
 import Nav from "./component/nav";
 import axios from "axios";
 import Landing from "./page/LandingPage";
-import MusicSyncSpace from "./page/Spotifyspace/MusicSyncSpace";
+import MusicSyncSpace from "./page/SpotifySpaceMusic/MusicSyncSpace";
 import PlaylistDetails from "./page/playlistDetails";
+import JoinMusicSyncSpace from "./page/JoinSpotifySpaceMusic/JoinMusicSyncSpace";
 import socket from "./socketConfig";
 import Home from "./page/home";
 function App(props) {
   const navigate = useNavigate();
+  function logout() {
+    axios
+      .post("/api/auth/logout", { withCredentials: true })
+      .then((response) => {});
+  }
   function checkLogin() {
     axios
       .post("/api/auth/check-login", { withCredentials: true })
       .then((res) => {
         if (res.data.succes) {
-          props.loginAthification(res.data.payload);
           let userId = res.data.payload._id;
-          socket.auth = userId;
+          socket.auth = { userId };
           socket.connect();
+          props.loginAthification(res.data.payload);
           setLogin(true);
         } else {
           navigate("/");
@@ -34,7 +40,11 @@ function App(props) {
   const [isLogin, setLogin] = useState(false);
   const [checking, setchecking] = useState(false);
   useEffect(() => {
+    // logout()
     checkLogin();
+    // setTimeout(() => {
+    //   checkLogin();
+    // },2000)
   }, []);
 
   return checking ? (
@@ -48,6 +58,10 @@ function App(props) {
             <Route path="/home" element={<Home />} />
             <Route path="/playlist/:id" element={<PlaylistDetails />} />
             <Route path="/musicsyncspace" element={<MusicSyncSpace />} />
+            <Route
+              path="/musicsyncspace/:id"
+              element={<JoinMusicSyncSpace />}
+            />
           </Routes>
         </div>
       </div>
