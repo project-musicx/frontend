@@ -17,7 +17,6 @@ function AddTrackToSpotifyPlaylistButton(props) {
   const [clickAdd, setClickAdd] = useState(false);
   const [added, setAdded] = useState(false);
   const addTrack = () => {
-    console.log(Alltrack[playlistId]);
     let newList = Alltrack[playlistId];
     newList[0].unshift(track);
     Alltrack[playlistId] = newList;
