@@ -49,7 +49,7 @@ function SyncPlayer(props) {
   }
 
   useEffect(() => {
-    playSong();
+    //playSong();
     clearInterval(interval);
     currentSecond = 0;
   }, [currentPlayingTrack.uri]);
