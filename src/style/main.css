@@ -8,7 +8,6 @@
   display: none;
 }
 .header-track {
-  padding: 20px;
   position: relative;
   height: 300px;
   width: 100%;
@@ -550,6 +549,8 @@ button {
   z-index: 10000;
 }
 .wrappper-find-sync {
+  padding-top: 20px;
+  padding-left: 20px;
   position: relative;
   color: white;
   z-index: 10000;

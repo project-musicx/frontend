@@ -11,7 +11,7 @@ function MusicSyncSpace(props) {
   const { user } = props;
   const [queueTrack, setQueueTrack] = useState([]);
   const [currentPlayingTrack, setCurrentPlayingTrack] = useState({});
-
+  const [room, setRoom] = useState("");
   function updateCurrentTrack(track) {
     setCurrentPlayingTrack(track);
   }
@@ -20,6 +20,7 @@ function MusicSyncSpace(props) {
     axios
       .post("/api/transition-musicsyncspace", { musicsyncspace: true })
       .then((result) => {
+        setRoom(result.data.room);
         realTimeMusicSpaceMessage();
         count++;
       });
@@ -27,43 +28,51 @@ function MusicSyncSpace(props) {
   function realTimeMusicSpaceMessage() {
     if (count) return;
     socket.on("can-i-connect-with-your-space", (userId) => {
+      console.log("socmeone want to connecte");
       socket.emit("yes-connect-to-my-space", {
         userId: userId,
-        spaceId: user._id,
+        room: user._id,
+        currentPlayingTrack: currentPlayingTrack,
       });
     });
   }
   return (
     <div className="musicSyncSpace">
-      <div className="wraper-music-space">
-        <HeadSpaceSync
-          currentPlayingTrack={currentPlayingTrack}
-          updateCurrentTrack={updateCurrentTrack}
-          setCurrentPlayingTrack={setCurrentPlayingTrack}
-          queueTrack={queueTrack}
-          setQueueTrack={setQueueTrack}
-        />
-        <div className="container-sync">
-          <div className="playlist-queue-wrapper">
-            <RenderManageAndSyncTrack
-              currentPlayingTrack={currentPlayingTrack}
-              updateCurrentTrack={updateCurrentTrack}
-              queueTrack={queueTrack}
-              setQueueTrack={setQueueTrack}
-            />
-          </div>
-          <div className="second-wraper-table"></div>
-        </div>
-        {currentPlayingTrack.uri ? (
-          <SyncPlayer
-            beginPlayingSong={beginPlayingSong}
-            queueTrack={queueTrack}
+      {room.length ? (
+        <div className="wraper-music-space">
+          <HeadSpaceSync
             currentPlayingTrack={currentPlayingTrack}
+            updateCurrentTrack={updateCurrentTrack}
+            setCurrentPlayingTrack={setCurrentPlayingTrack}
+            queueTrack={queueTrack}
+            room={room}
+            setQueueTrack={setQueueTrack}
           />
-        ) : (
-          ""
-        )}
-      </div>
+          <div className="container-sync">
+            <div className="playlist-queue-wrapper">
+              <RenderManageAndSyncTrack
+                currentPlayingTrack={currentPlayingTrack}
+                updateCurrentTrack={updateCurrentTrack}
+                queueTrack={queueTrack}
+                setQueueTrack={setQueueTrack}
+              />
+            </div>
+            <div className="second-wraper-table"></div>
+          </div>
+          {currentPlayingTrack.uri ? (
+            <SyncPlayer
+              beginPlayingSong={beginPlayingSong}
+              queueTrack={queueTrack}
+              currentPlayingTrack={currentPlayingTrack}
+            />
+          ) : (
+            ""
+          )}
+        </div>
+      ) : (
+        ""
+      )}
+
       <ConnectedPeople />
     </div>
   );

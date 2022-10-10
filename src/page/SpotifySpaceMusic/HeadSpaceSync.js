@@ -8,6 +8,7 @@ function HeadSpaceSync({
   queueTrack,
   setQueueTrack,
   setCurrentPlayingTrack,
+  room,
 }) {
   return (
     <div className="header-track">
@@ -15,6 +16,7 @@ function HeadSpaceSync({
         setCurrentPlayingTrack={setCurrentPlayingTrack}
         queueTrack={queueTrack}
         setQueueTrack={setQueueTrack}
+        room={room}
       />
 
       <div className="wrapper-box">

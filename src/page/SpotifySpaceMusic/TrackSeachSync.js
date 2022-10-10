@@ -1,5 +1,6 @@
 import { AiOutlineSearch } from "react-icons/ai";
 import { connect } from "react-redux";
+import axios from "axios";
 import { useState, useEffect } from "react";
 import AddToQueue from "./AddToQueue";
 import { MdClose } from "react-icons/md";
@@ -10,7 +11,8 @@ const spotifyApi = new SpotifyWebApi({
 });
 
 function TrackSeachSync(props) {
-  const { user, queueTrack, setQueueTrack, setCurrentPlayingTrack } = props;
+  const { user, queueTrack, setQueueTrack, setCurrentPlayingTrack, room } =
+    props;
   const [currentSong, setCurrentSong] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   useEffect(() => {
@@ -63,6 +65,19 @@ function TrackSeachSync(props) {
           setQueueTrack(uniqueRecord);
           if (uniqueRecord.length) {
             setCurrentPlayingTrack(uniqueRecord[0]);
+            let payload = {
+              room: room,
+              queue: uniqueRecord,
+            };
+            console.log(room);
+            axios
+              .post("/api/update-my-queue", payload)
+              .then((result) => {
+                console.log(result);
+              })
+              .catch((err) => {
+                console.log("yehhj");
+              });
           }
         },
         function (err) {

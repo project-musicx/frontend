@@ -22,23 +22,15 @@ function JoinMusicSyncSpace() {
       if (result.data.musicsyncspace) {
         setLoad(true);
       }
-      //socket.emit("sync-with-this-space",{sync-with-this-space});
     });
   }, [id]);
 
-  function realTimeMusicSpaceMessage() {
-    socket.on("current-playing-track", (data) => {
-      console.log(data);
-    });
-    socket.on("you-are-connected-to-this-space", (data) => {
-      console.log(data);
-    });
-  }
   return (
     <div className="musicSyncSpace">
       {load ? (
         <div className="wraper-music-space">
           <HeadSpaceSync
+            room={id}
             currentPlayingTrack={currentPlayingTrack}
             updateCurrentTrack={updateCurrentTrack}
             setCurrentPlayingTrack={setCurrentPlayingTrack}
@@ -48,6 +40,7 @@ function JoinMusicSyncSpace() {
           <div className="container-sync">
             <div className="playlist-queue-wrapper">
               <RenderManageAndSyncTrack
+                room={id}
                 currentPlayingTrack={currentPlayingTrack}
                 updateCurrentTrack={updateCurrentTrack}
                 queueTrack={queueTrack}
@@ -58,6 +51,7 @@ function JoinMusicSyncSpace() {
           </div>
           {currentPlayingTrack.uri ? (
             <SyncPlayer
+              room={id}
               beginPlayingSong={beginPlayingSong}
               queueTrack={queueTrack}
               currentPlayingTrack={currentPlayingTrack}
