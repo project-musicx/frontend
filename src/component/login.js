@@ -21,9 +21,9 @@ function Login() {
   }, []);
 
   function loginWithGoogle() {
-    axios.post("/api/auth/login", { withCredentials: true }).then((result) => {
-      console.log("succes");
-    });
+    axios
+      .post("/api/auth/login", { withCredentials: true })
+      .then((result) => {});
   }
 
   return (

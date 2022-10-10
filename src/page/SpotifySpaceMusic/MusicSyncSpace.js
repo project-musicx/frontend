@@ -21,17 +21,16 @@ function MusicSyncSpace(props) {
       .post("/api/transition-musicsyncspace", { musicsyncspace: true })
       .then((result) => {
         setRoom(result.data.room);
-        realTimeMusicSpaceMessage();
+        realTimeMusicSpaceMessage(result.data.room);
         count++;
       });
   }, []);
-  function realTimeMusicSpaceMessage() {
+  function realTimeMusicSpaceMessage(room) {
     if (count) return;
-    socket.on("can-i-connect-with-your-space", (userId) => {
-      console.log("socmeone want to connecte");
+    socket.emit("link-to-my-space", room);
+    socket.on("can-i-connect-with-your-space", (room) => {
       socket.emit("yes-connect-to-my-space", {
-        userId: userId,
-        room: user._id,
+        room: room,
         currentPlayingTrack: currentPlayingTrack,
       });
     });

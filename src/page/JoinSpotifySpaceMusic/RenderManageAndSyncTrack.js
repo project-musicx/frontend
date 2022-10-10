@@ -17,6 +17,8 @@ function RenderManageAndSyncTrack(props) {
   } = props;
 
   useEffect(() => {
+    if (count) return;
+    count++;
     retriveSongQueue();
     realTimeMusicSpaceMessage();
   }, []);
@@ -31,14 +33,8 @@ function RenderManageAndSyncTrack(props) {
   }
 
   function realTimeMusicSpaceMessage() {
-    if (count) return;
-    count++;
-    socket.on("current-playing-track", (data) => {
-      console.log(data);
-    });
-    socket.on("you-are-connected-to-this-space", (data) => {
-      console.log(data);
-    });
+    socket.on("current-playing-track", (data) => {});
+    socket.on("you-are-connected-to-this-space", (data) => {});
   }
 
   return (

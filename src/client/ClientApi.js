@@ -68,3 +68,5 @@ ClientApi.prototype = {
     });
   },
 };
+
+module.exports = ClientApi;
