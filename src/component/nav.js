@@ -20,12 +20,6 @@ function Nav({ playlist }) {
             </div>
             <p>Home</p>
           </NavLink>
-          <NavLink to="/musicsyncspace" className="box-tabs-nav">
-            <div className="box-icon">
-              <IoSyncOutline />
-            </div>
-            <p>Space</p>
-          </NavLink>
           <div className="render-my-play-list">
             <SpotifyPlaylistNames />
           </div>
